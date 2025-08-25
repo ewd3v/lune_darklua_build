@@ -1,4 +1,3 @@
-local luau_path = require("@luau_pkg/luau_path")
 local dirs = require("@pkg/dirs")
 local pathfs = require("@pkg/pathfs")
 local globPackage = require("@pkg/glob")
@@ -8,13 +7,13 @@ local task = require("@lune/task")
 local process = require("@lune/process")
 
 local fs = pathfs.fs
-local Path = luau_path.Path
+local Path = pathfs.Path
 
 local progressbar = require("./progress")
 local clr = stdio.color
 
-type AsPath = luau_path.AsPath
-type Path = luau_path.Path
+type AsPath = pathfs.AsPath
+type Path = pathfs.Path
 
 type Files = { Path }
 
@@ -79,7 +78,7 @@ local function runScript(script: Script<any>, cwd: string?)
 		local args = string.split(str, " ")
 		local command = table.remove(args, 1)
 
-		local result = process.spawn(assert(command, "No command provided"), args, {
+		local result = process.exec(assert(command, "No command provided"), args, {
 			cwd = cwd,
 		})
 
@@ -168,7 +167,7 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 				table.insert(args, configPath)
 			end
 
-			local result = process.spawn("darklua", args)
+			local result = process.exec("darklua", args)
 			if not result.ok or (#result.stderr > 0 and string.find(string.lower(result.stderr), "error")) then
 				error(result.stderr, 0)
 			end
