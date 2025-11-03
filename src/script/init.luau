@@ -4,7 +4,7 @@ if not _G.LUA_ENV then
 end
 
 local args = require("@lune/process").args
-local lib = require("../lib")
+local lib = require("./lib")
 
 local pathfs = require("@pkg/pathfs")
 
@@ -25,14 +25,14 @@ end
 
 local configFile
 if config then
-	configFile = pathfs.File.new(config)
+	configFile = pathfs.FilePath.new(config)
 end
 
 if not configFile or not configFile:isFile() then
 	-- Search for default config files
 	for _, format in ipairs(supportedSerdeFormats) do
-		configFile = pathfs.File.new(DEFAULT_CONFIG .. "." .. format)
-		if (configFile :: pathfs.File):isFile() then
+		configFile = pathfs.FilePath.new(DEFAULT_CONFIG .. "." .. format)
+		if (configFile :: pathfs.FilePath):isFile() then
 			break
 		end
 	end

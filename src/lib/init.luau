@@ -10,7 +10,7 @@ local process = require("@lune/process")
 local fs = pathfs.fs
 local Path = luau_path.Path
 
-local progressbar = require("./progress")
+local progressbar = require("@self/progress")
 local clr = stdio.color
 
 type AsPath = luau_path.AsPath
@@ -79,7 +79,7 @@ local function runScript(script: Script<any>, cwd: string?)
 		local args = string.split(str, " ")
 		local command = table.remove(args, 1)
 
-		local result = process.spawn(assert(command, "No command provided"), args, {
+		local result = process.exec(assert(command, "No command provided"), args, {
 			cwd = cwd,
 		})
 
@@ -107,7 +107,7 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 		local bar: progressbar.ProgressBarImpl
 		local resolvedInputFiles: Files
 		local resolvedBuildFiles: Files
-		local buildDir: pathfs.Directory
+		local buildDir: pathfs.DirectoryPath
 
 		local success, err = pcall(function()
 			bar = progressbar
@@ -168,7 +168,7 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 				table.insert(args, configPath)
 			end
 
-			local result = process.spawn("darklua", args)
+			local result = process.exec("darklua", args)
 			if not result.ok or (#result.stderr > 0 and string.find(string.lower(result.stderr), "error")) then
 				error(result.stderr, 0)
 			end
@@ -180,7 +180,7 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 
 			bar:nextStage() -- output
 
-			local outDir = pathfs.Directory.new(outputPath)
+			local outDir = pathfs.DirectoryPath.new(outputPath)
 			outDir:writeDir()
 
 			fs.copy(processDir, outDir.path:join(input), true)
