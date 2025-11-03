@@ -28,7 +28,6 @@ script = "src/script/init.luau"
 darklua = { name = "pesde/darklua", version = "^0.17.1+toolchainlib.1" }
 
 [dependencies]
-luau_path = { name = "jiwonz/luau_path", version = "^0.2.0", target = "luau" }
 pathfs = { name = "jiwonz/pathfs", version = "^0.6.0" }
 dirs = { name = "jiwonz/dirs", version = "^0.6.0" }
 glob = { name = "jiwonz/glob", version = "^0.2.0" }

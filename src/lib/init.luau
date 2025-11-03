@@ -1,4 +1,3 @@
-local luau_path = require("@luau_pkg/luau_path")
 local dirs = require("@pkg/dirs")
 local pathfs = require("@pkg/pathfs")
 local globPackage = require("@pkg/glob")
@@ -8,13 +7,13 @@ local task = require("@lune/task")
 local process = require("@lune/process")
 
 local fs = pathfs.fs
-local Path = luau_path.Path
+local Path = pathfs.Path
 
 local progressbar = require("@self/progress")
 local clr = stdio.color
 
-type AsPath = luau_path.AsPath
-type Path = luau_path.Path
+type AsPath = pathfs.AsPath
+type Path = pathfs.Path
 
 type Files = { Path }
 
