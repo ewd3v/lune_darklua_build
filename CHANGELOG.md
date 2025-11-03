@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated to Lune v0.10.4
 - Updated dependencies
+- Now available as a binary package instead of as a script package
 
 ## [0.1.2] - 2025-08-25
 

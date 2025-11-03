@@ -1,6 +1,6 @@
 # lune_darklua_build
 
-A [darklua](https://darklua.com/) build script for [Lune](https://lune-org.github.io/docs).
+A [darklua](https://darklua.com/) build tool for [Lune](https://lune-org.github.io/docs).
 Also comes as a library for usage within Lune scripts.
 
 ## Install
@@ -13,24 +13,21 @@ pesde add ewdev/darklua_build --dev -t lune
 pesde install
 ```
 
-## Usage (script)
+## Usage (binary)
 
 pesde.toml:
 
 ```toml
 [dev_dependencies]
-darklua = { name = "pesde/darklua", version = "^0.16.0" }
+darklua = { name = "pesde/darklua", version = "^0.17.2" }
 darklua_build = { name = "ewdev/darklua_build", version = "^0.1.0" }
-
-[scripts]
-build = ".pesde/darklua_build/darklua_build.luau"
 ```
 
 ```sh
-pesde run build # Builds from src, into out
+darklua_build # Builds from src, into out
 ```
 
-Script options:
+CLI options:
 
 ```sh
 --input / -i [Path]

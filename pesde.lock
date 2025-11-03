@@ -54,9 +54,6 @@ index_url = "https://github.com/pesde-pkg/index"
 ref_ty = "pesde"
 index_url = "https://github.com/pesde-pkg/index"
 
-[graph."jiwonz/luau_path@0.2.0 luau"]
-direct = ["luau_path", { name = "jiwonz/luau_path", version = "^0.2.0", index = "default", target = "luau" }, "standard"]
-
 [graph."jiwonz/luau_path@0.2.0 luau".dependencies]
 luau_disk = ["jiwonz/luau_disk@0.2.0 luau", "standard"]
 
