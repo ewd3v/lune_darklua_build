@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to Lune v0.10.4
+- Updated dependencies
+
 ## [0.1.2] - 2025-08-25
 
 ### Changed
