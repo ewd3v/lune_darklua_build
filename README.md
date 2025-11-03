@@ -20,7 +20,7 @@ pesde.toml:
 ```toml
 [dev_dependencies]
 darklua = { name = "pesde/darklua", version = "^0.17.2" }
-darklua_build = { name = "ewdev/darklua_build", version = "^0.1.0" }
+darklua_build = { name = "ewdev/darklua_build", version = "^0.2.0" }
 ```
 
 ```sh

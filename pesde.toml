@@ -1,7 +1,7 @@
 name = "ewdev/darklua_build"
-version = "0.1.2"
+version = "0.2.0"
 description = "A darklua build script for Lune"
-authors = ["ewdev"]
+authors = ["EwDev (https://ewdev.net/)"]
 repository = "https://github.com/ewd3v/lune_darklua_build"
 license = "MIT"
 includes = ["pesde.toml", "README.md", "LICENSE", ".luaurc", "src/**/*.luau"]
