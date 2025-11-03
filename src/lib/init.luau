@@ -1,6 +1,6 @@
 local dirs = require("@pkg/dirs")
 local pathfs = require("@pkg/pathfs")
-local globPackage = require("@pkg/glob")
+local glob = require("@pkg/glob")
 
 local stdio = require("@lune/stdio")
 local task = require("@lune/task")
@@ -36,11 +36,6 @@ export type Options = {
 		postProcess: Script<string>?,
 	}?,
 }
-
--- Simple wrapper that fixes the issue with the glob package mutating the pattern array
-local function glob(pattern: string | { string }, options: globPackage.Option?): Files
-	return globPackage(if type(pattern) == "table" then table.clone(pattern) else pattern, options)
-end
 
 local function reconcileFiles(files: { Path }, into: Path, cwd: Path)
 	for _, path in ipairs(files) do
