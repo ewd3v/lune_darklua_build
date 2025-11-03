@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated dependencies
 - Now available as a binary package instead of as a script package
 
+### Fixed
+
+- cwd option not working from the library when sent as a path object
+
 ## [0.1.2] - 2025-08-25
 
 ### Changed

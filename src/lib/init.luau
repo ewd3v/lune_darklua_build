@@ -86,7 +86,9 @@ end
 local function build(input: AsPath, output: AsPath, options: Options?)
 	local uoptions = (options or {}) :: Options
 
-	local workingDirPath = Path.from(if uoptions.cwd and #uoptions.cwd > 0 then uoptions.cwd else pathfs.cwd())
+	local workingDirPath = Path.from(
+		if uoptions.cwd and (type(uoptions.cwd) ~= "string" or #uoptions.cwd > 0) then uoptions.cwd else pathfs.cwd()
+	)
 
 	local inputFileGlobs = { Path.from(input):toString() .. "/**/*" }
 	local buildFileGlobs = uoptions.include or {}
