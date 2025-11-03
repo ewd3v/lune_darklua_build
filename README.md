@@ -74,10 +74,6 @@ postProcess = [ "command", "another command" ] # An array / string of scripts to
 ## Usage (library)
 
 ```lua
-if not _G.LUA_ENV then
-	_G.LUA_ENV = "lune"
-end
-
 local darklua_build = require("path/to/package")
 darklua_build(
     inputPath, -- Path to what to process.

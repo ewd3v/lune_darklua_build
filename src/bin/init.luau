@@ -1,8 +1,3 @@
--- selene: allow(global_usage)
-if not _G.LUA_ENV then
-	_G.LUA_ENV = "lune"
-end
-
 local args = require("@lune/process").args
 local lib = require("./lib")
 

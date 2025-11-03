@@ -1,5 +1,3 @@
-_G.LUA_ENV = "lune"
-
 local darklua_build = require("./src/lib")
 
 darklua_build("src", "out", {
