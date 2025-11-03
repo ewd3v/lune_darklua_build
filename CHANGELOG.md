@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-11-03
+
 ### Changed
 
 - Updated to Lune v0.10.4
@@ -41,7 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release
 
-[unreleased]: https://github.com/ewd3v/lune_darklua_build/compare/v0.1.2...HEAD
+[unreleased]: https://github.com/ewd3v/lune_darklua_build/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/ewd3v/lune_darklua_build/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/ewd3v/lune_darklua_build/compare/e2d8d914149f1049407bb9896944f32261af1c17...v0.1.2
 [0.1.1]: https://github.com/ewd3v/lune_darklua_build/compare/7ecaa0c6df9d50ec5a15fc2beb90819b03892c41...e2d8d914149f1049407bb9896944f32261af1c17
 [0.1.0]: https://github.com/ewd3v/lune_darklua_build/compare/61acebdbcc80815de2d9ad74b2ba4281bad7493b...7ecaa0c6df9d50ec5a15fc2beb90819b03892c41
