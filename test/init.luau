@@ -1,7 +1,6 @@
 local darklua_build = require("./src/lib")
 
 darklua_build("src", "out", {
-	cwd = "test",
 	include = {
 		".darklua.json5",
 		".luaurc",

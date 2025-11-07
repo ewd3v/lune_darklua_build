@@ -3,4 +3,5 @@ output = "out"
 
 [options]
 include = [".darklua.json5", ".luaurc", "*.project.json", "sourcemap.json"]
+ignore = ["lune_packages"]
 watch = true
