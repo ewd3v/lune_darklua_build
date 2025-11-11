@@ -14,3 +14,4 @@ default = "https://github.com/pesde-pkg/index"
 
 [dev_dependencies]
 rojo = { name = "pesde/rojo", version = "^7.4.4", target = "lune" }
+darklua = { name = "pesde/darklua", version = "^0.17.1+toolchainlib.1", target = "lune" }

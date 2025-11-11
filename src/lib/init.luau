@@ -39,7 +39,8 @@ export type Options = {
 
 local function reconcileFiles(files: { Path }, into: Path, cwd: Path)
 	for _, path in ipairs(files) do
-		local destPath = into:join(assert(path:stripPrefix(cwd)))
+		local target = assert(if cwd:toString() == "." then path else path:stripPrefix(cwd), "Unable to strip cwd.")
+		local destPath = into:join(target)
 		local destParentPath = destPath:parent()
 
 		if destParentPath and not fs.isDir(destParentPath) then
@@ -91,7 +92,7 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 		workingDirPath = Path.from(uoptions.cwd)
 	end
 	if not workingDirPath or #workingDirPath:toString() == 0 then
-		workingDirPath = pathfs.cwd()
+		workingDirPath = Path.new(".")
 	end
 
 	local inputFileGlobs = { Path.from(input):toString() .. "/**/*" }
@@ -122,19 +123,15 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 				bar:start()
 			end
 
-			local outputPath = workingDirPath:join(output)
-			local darkluaConfigPath = if uoptions.darklua_config
-				then workingDirPath:join(uoptions.darklua_config)
-				else nil
-
 			resolvedInputFiles = inputFiles or glob(inputFileGlobs, globOptions)
 			resolvedBuildFiles = buildFiles or glob(buildFileGlobs, globOptions)
 
-			local buildDirPath = if (uoptions.temp_dir_location or uoptions.temp_dir_keep)
-				then workingDirPath:join(uoptions.temp_dir_location or ".")
-				else nil
+			local outputPath = workingDirPath:join(output)
+			local buildDirLocation = if uoptions.temp_dir_location
+				then workingDirPath:join(uoptions.temp_dir_location)
+				else workingDirPath
 
-			buildDir = dirs.createTempDir(buildDirPath, "darklua_build_")
+			buildDir = dirs.createTempDir(buildDirLocation, "darklua_build_")
 
 			reconcileFiles(resolvedInputFiles, buildDir.path, workingDirPath)
 			reconcileFiles(resolvedBuildFiles, buildDir.path, workingDirPath)
@@ -146,21 +143,21 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 
 			bar:nextStage() -- process
 
-			local processDir = buildDir.path:join(input):toString()
-			local configPath = if darkluaConfigPath then darkluaConfigPath:toString() else nil
-
+			local processPath = Path.from(input):toString()
+			local configPath = if uoptions.darklua_config then Path.from(uoptions.darklua_config):toString() else nil
 			if not configPath then
-				if fs.isFile(buildDir.path:join(".darklua.json")) then
-					configPath = buildDir.path:join(".darklua.json"):toString()
-				elseif fs.isFile(buildDir.path:join(".darklua.json5")) then
-					configPath = buildDir.path:join(".darklua.json5"):toString()
+				for _, file in { ".darklua.json", ".darklua.json5" } do
+					if fs.isFile(buildDir.path:join(file)) then
+						configPath = file
+						break
+					end
 				end
 			end
 
 			local args = {
 				"process",
-				processDir,
-				processDir,
+				processPath,
+				processPath,
 			}
 
 			if configPath then
@@ -168,7 +165,9 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 				table.insert(args, configPath)
 			end
 
-			local result = process.exec("darklua", args)
+			local result = process.exec("darklua", args, {
+				cwd = buildDir.path:toString(),
+			})
 			if not result.ok or (#result.stderr > 0 and string.find(string.lower(result.stderr), "error")) then
 				error(result.stderr, 0)
 			end
@@ -183,7 +182,7 @@ local function build(input: AsPath, output: AsPath, options: Options?)
 			local outDir = pathfs.DirectoryPath.new(outputPath)
 			outDir:writeDir()
 
-			fs.copy(processDir, outDir.path:join(input), true)
+			fs.copy(buildDir.path:join(input), outDir.path:join(input), true)
 			reconcileFiles(resolvedBuildFiles, outDir.path, workingDirPath)
 		end)
 

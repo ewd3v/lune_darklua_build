@@ -1,1 +1,1 @@
-require("@shared/sayHello")("server")
+require(game:GetService('ReplicatedStorage'):FindFirstChild('Shared'):FindFirstChild('sayHello'))("server")

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The temporary build dir is now by default located in the cwd instead of the OS's temp directory (fixes issue with darklua not processing?)
+
+### Fixed
+
+- Specifying a darklua config now actually uses that file inside of the build directory instead of the source directory.
+
 ## [0.2.1] - 2025-11-07
 
 ### Fixed
