@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2025-11-11
+
 ### Changed
 
 - The temporary build dir is now by default located in the cwd instead of the OS's temp directory (fixes issue with darklua not processing?)
@@ -57,7 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release
 
-[unreleased]: https://github.com/ewd3v/lune_darklua_build/compare/v0.2.1...HEAD
+[unreleased]: https://github.com/ewd3v/lune_darklua_build/compare/v0.2.2...HEAD
+[0.2.0]: https://github.com/ewd3v/lune_darklua_build/compare/v0.2.1...v0.2.2
 [0.2.0]: https://github.com/ewd3v/lune_darklua_build/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/ewd3v/lune_darklua_build/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/ewd3v/lune_darklua_build/compare/e2d8d914149f1049407bb9896944f32261af1c17...v0.1.2
